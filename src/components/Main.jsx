@@ -4,7 +4,7 @@ const Main = () => {
     const [dado, setDado] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/products")
+        fetch("https://e-commerce-test-nfi8.onrender.com/api/products")
             .then(res => res.json())
             .then(data => setDado(data))
     }, [])
