@@ -1,5 +1,3 @@
-import variStyle from "../assets/white_logo_varistyle.png"
-
 const Header = () => {
     return (
         <header>
