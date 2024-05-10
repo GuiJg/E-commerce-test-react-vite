@@ -11,8 +11,22 @@ const Main = () => {
 
     return (
         <main>
-            <h1>NOSSOS CAFÉS</h1>
-            <div className="division"></div>
+            <div className="banner-video">
+                <video id="banner-video" autoPlay muted loop playsInline>
+                    <source src="https://videos.pexels.com/video-files/6769802/6769802-uhd_3840_2160_24fps.mp4" type="video/mp4" />
+                </video>
+                <div className="title-banner-video">
+                    <h1>
+                        oxente cafés especiais,
+                        <br />
+                        o sabor da paixão nordestina
+                    </h1>
+                </div>
+            </div>
+            <div className="title-main">
+                <h1>NOSSOS CAFÉS</h1>
+                <div className="division"></div>
+            </div>
             <div className="container-item">
                 {dado.map(data => (
                     <div className="item" key={data._id}>
