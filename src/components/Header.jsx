@@ -1,8 +1,10 @@
+import headerLogo from "/src/assets/oxente-icon-white.png"
+
 const Header = () => {
     return (
         <header>
             <div className='header-logo'>
-                <img src="../src/assets/oxente-icon-white.png" alt="" />
+                <img src={headerLogo} alt="" />
             </div>
             <nav className="header-menu">
                 <a href="#about" className="header-link">Oxente Café</a>
