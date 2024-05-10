@@ -2,7 +2,7 @@ const Header = () => {
     return (
         <header>
             <div className='header-logo'>
-                <img src="/src/assets/oxente-icon-white.png" alt="" />
+                <img src="./src/assets/oxente-icon-white.png" alt="" />
             </div>
             <nav className="header-menu">
                 <a href="#about" className="header-link">Oxente Café</a>
