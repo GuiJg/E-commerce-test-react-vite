@@ -228,6 +228,10 @@ main {
     color: #fff;
 }
 
+.create-page{
+    border-radius: 0;
+}
+
 .container-item {
     display: flex;
     align-items: center;
