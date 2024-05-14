@@ -7,21 +7,16 @@ const Header = () => {
                 <img src={headerLogo} alt="" />
             </div>
             <nav className="header-menu">
-                <a href="#about" className="header-link">Oxente Café</a>
+                <a href="#" className="header-link">Sobre nós</a>
                 <a href="#" className="header-link">Cafés</a>
                 <a href="#" className="header-link">Fale conosco</a>
                 <a href="#" className="header-link">Contato</a>
             </nav>
-            <form>
+            <form className="search-products">
                 <label htmlFor="search">
                     <input type="text" autoComplete="off" placeholder="O que você procura?" id="search" required="" />
                     <div className="icon">
-                        <svg strokeWidth={2} stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="swap-on">
-                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" strokeLinejoin="round" strokeLinecap="round"></path>
-                        </svg>
-                        <svg strokeWidth="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="swap-off">
-                            <path d="M10 19l-7-7m0 0l7-7m-7 7h18" strokeLinejoin="round" strokeLinecap="round"></path>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="#000" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14" /></svg>
                     </div>
                     <button type="reset" className="close-btn">
                         <svg viewBox="0 0 20 20" className="h-5 w-5" xmlns="http://www.w3.org/2000/svg">

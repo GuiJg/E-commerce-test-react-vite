@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 // import { NavLink } from "react-router-dom"
 import Modal from "./Modal"
 import axios from "axios"
+import { Navigate } from "react-router-dom"
 
 const Main = () => {
     const [dado, setDado] = useState([])
@@ -13,13 +14,14 @@ const Main = () => {
     const [image, setImage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    const saveProduct = async(e) => {
+    const saveProduct = async (e) => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await axios.post("https://e-commerce-test-nfi8.onrender.com/api/products", {name: name, quantity: quantity, price: price, image: image});
-            alert(`Save ${response.data.name} sucessfully`);
-            setIsLoading(false); 
+            const response = await axios.post("https://e-commerce-test-nfi8.onrender.com/api/products", { name: name, quantity: quantity, price: price, image: image });
+            alert(`${response.data.name} salvo com sucesso`);
+            setIsLoading(false);
+            Navigate("/");
         } catch (error) {
             console.log(error);
         }
@@ -49,11 +51,9 @@ const Main = () => {
                 <h1>NOSSOS CAFÉS</h1>
                 <div className="division"></div>
             </div>
-            <button onClick={() => setIsOpen(true)}>Inserir Produto</button>
+            <button className="button-input" onClick={() => setIsOpen(true)}>Inserir Produto</button>
             <form className="create-page" onSubmit={saveProduct}>
-
                 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-                    <h1>Inserindo um produto novo</h1>
                     <br />
                     <div>
                         <label>Nome</label>

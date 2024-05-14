@@ -57,7 +57,7 @@ header {
 }
 
 
-form {
+.search-products {
     --input-bg: #FFf;
     --padding: 1.5em;
     --rotate: 80deg;
@@ -71,14 +71,14 @@ form {
     border-radius: 10em;
 }
 
-form label {
+.search-products label {
     display: flex;
     align-items: center;
     width: 100%;
     height: var(--height);
 }
 
-form input {
+.search-products input {
     width: 100%;
     padding-inline-start: calc(var(--padding) + var(--gap));
     outline: none;
@@ -86,10 +86,8 @@ form input {
     border: 0;
 }
 
-form svg {
-    color: #111;
+.search-products svg {
     transition: 0.3s cubic-bezier(.4, 0, .2, 1);
-    position: absolute;
     height: 15px;
 }
 
@@ -230,6 +228,107 @@ main {
 
 .create-page{
     border-radius: 0;
+}
+
+.modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    background-color: #fff;
+    box-shadow: 5px 5px 10px 1px #00000074;
+    padding: 20px;
+    width: 50%;
+}
+
+.modal-content svg{
+    width: 1.5rem;
+    height: 100%;
+    cursor: pointer;
+}
+
+.text-close-button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+
+.modal label, input, button{
+    font-family: 'Sofia Sans Condensed', sans-serif;
+}
+
+.modal label{
+    font-size: 1.3rem;
+}
+
+.modal input{
+    display: flex;
+    background-color: #fff;
+    border: 1px solid #000000b6;
+    padding: 1% 1% 1% 1%;
+    margin: 1% 0% 1% 0%;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.modal input::placeholder {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #000000c9;
+}
+
+.modal button{
+    background-color: #000;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 5rem;
+    padding: 1%;
+    margin-top: 2%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.5s;
+}
+
+.modal button:hover{
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.button-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    border: 1px solid #fff;
+    padding: 0.5% 1% 0.5% 1%;
+    font-size: 1rem;
+    font-family: "Lexend", sans-serif;
+    font-weight: 400;
+    color: #fff;
+    transition: 0.5s all;
+    cursor: pointer;
+}
+
+.button-input:hover{
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
 }
 
 .container-item {
