@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
-// import { NavLink } from "react-router-dom"
-import Modal from "./Modal"
-import axios from "axios"
-import { Navigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import Modal from "./ModalSaveProduct";
+import axios from "axios";
 
 const Main = () => {
-    const [dado, setDado] = useState([])
+    const [dado, setDado] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
 
     const [name, setName] = useState("");
@@ -19,13 +19,15 @@ const Main = () => {
         try {
             setIsLoading(true);
             const response = await axios.post("https://e-commerce-test-nfi8.onrender.com/api/products", { name: name, quantity: quantity, price: price, image: image });
-            alert(`${response.data.name} salvo com sucesso`);
+            toast.success(`${response.data.name} salvo com sucesso`);
             setIsLoading(false);
-            Navigate("/");
+            window.location.reload();
         } catch (error) {
-            console.log(error);
+            toast.error(error.message);
+            setIsLoading(false);
         }
     }
+    
 
     useEffect(() => {
         fetch("https://e-commerce-test-nfi8.onrender.com/api/products")
@@ -37,7 +39,7 @@ const Main = () => {
         <main>
             <div className="banner-video">
                 <video id="banner-video" autoPlay muted loop playsInline>
-                    <source src="https://videos.pexels.com/video-files/6769802/6769802-uhd_3840_2160_24fps.mp4" type="video/mp4" />
+                    <source src="https://videos.pexels.com/video-files/7033912/7033912-uhd_3840_2160_25fps.mp4" type="video/mp4" />
                 </video>
                 <div className="title-banner-video">
                     <h1>
@@ -72,8 +74,7 @@ const Main = () => {
                         <input type="text" value={image} required onChange={(e) => setImage(e.target.value)} placeholder="Link de imagem" />
                     </div>
                     <div>
-                        {!isLoading}
-                        <button> Salvar </button>
+                        {!isLoading && (<button> Salvar </button>)}
                     </div>
                 </Modal>
             </form>
@@ -88,10 +89,12 @@ const Main = () => {
                                     R${data.price},99
                                     {/* <p>Quantidade: {data.quantity}</p> */}
                                 </span>
-                                <div className="button">
-                                    <button className="card-btn">
+                                <div className="buttons">
+                                    {/* <button className="card-btn">
                                         Comprar
-                                    </button>
+                                    </button> */}
+                                    <Link to={`/editar/${data._id}`} className="card-btn" id="edit-btn">Editar</Link>
+                                    <Link to={`/deletar/${data._id}`} className="card-btn" id="delete-btn">Deletar</Link>
                                 </div>
                             </div>
                         </div>

@@ -173,13 +173,13 @@ main {
     margin-top: 5rem;
 }
 
-.title-main{
+.title-main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-top: 1rem;    
+    padding-top: 1rem;
     margin-top: 2rem;
 }
 
@@ -195,7 +195,7 @@ main {
     background-color: #000;
 }
 
-.banner-video{
+.banner-video {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -211,7 +211,7 @@ main {
     position: relative;
 }
 
-.title-banner-video{
+.title-banner-video {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -219,14 +219,14 @@ main {
     position: absolute;
 }
 
-.title-banner-video h1{
+.title-banner-video h1 {
     font-family: "Bahiana", sans-serif;
     font-size: 5rem;
     font-weight: 400;
     color: #fff;
 }
 
-.create-page{
+.form-submit {
     border-radius: 0;
 }
 
@@ -254,13 +254,13 @@ main {
     width: 50%;
 }
 
-.modal-content svg{
+.modal-content svg {
     width: 1.5rem;
     height: 100%;
     cursor: pointer;
 }
 
-.text-close-button{
+.text-close-button {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -268,15 +268,17 @@ main {
     text-transform: uppercase;
 }
 
-.modal label, input, button{
+.modal label,
+input,
+button {
     font-family: 'Sofia Sans Condensed', sans-serif;
 }
 
-.modal label{
+.modal label {
     font-size: 1.3rem;
 }
 
-.modal input{
+.modal input {
     display: flex;
     background-color: #fff;
     border: 1px solid #000000b6;
@@ -292,7 +294,7 @@ main {
     color: #000000c9;
 }
 
-.modal button{
+.modal button {
     background-color: #000;
     border: 1px solid #fff;
     color: #fff;
@@ -304,13 +306,13 @@ main {
     transition: 0.5s;
 }
 
-.modal button:hover{
+.modal button:hover {
     background-color: #fff;
     border: 1px solid #000;
     color: #000;
 }
 
-.button-input{
+.button-input {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -325,7 +327,7 @@ main {
     cursor: pointer;
 }
 
-.button-input:hover{
+.button-input:hover {
     background-color: #fff;
     color: #000;
     border: 1px solid #000;
@@ -336,9 +338,119 @@ main {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 2% 0% 5% 0%;
+    padding: 0.1% 0% 5% 0%;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica     Neue', sans-serif;
     gap: 2em;
+}
+
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10% 0% 5% 0%;
+}
+
+.edit-container h2{
+    font-size: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    box-shadow: 5px 5px 10px 1px #00000074;
+    width: 30%;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    padding: 20px;
+    width: 100%;
+}
+
+.form-content svg {
+    width: 1.5rem;
+    height: 100%;
+    cursor: pointer;
+}
+
+.text-close-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+
+.form label,
+input,
+button {
+    font-family: 'Sofia Sans Condensed', sans-serif;
+}
+
+.form label {
+    font-size: 1.3rem;
+}
+
+.form input {
+    display: flex;
+    background-color: #fff;
+    border: 1px solid #000000b6;
+    padding: 1% 1% 1% 1%;
+    margin: 1% 0% 1% 0%;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.form input::placeholder {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #000000c9;
+}
+
+.form button {
+    background-color: #000;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 5rem;
+    padding: 1%;
+    margin-top: 2%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.5s;
+}
+
+.form button:hover {
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.button-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    border: 1px solid #fff;
+    padding: 0.5% 1% 0.5% 1%;
+    font-size: 1rem;
+    font-family: "Lexend", sans-serif;
+    font-weight: 400;
+    color: #fff;
+    transition: 0.5s all;
+    cursor: pointer;
+}
+
+.button-input:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
 }
 
 .container-item img {
@@ -391,7 +503,39 @@ main {
     gap: 5rem;
 }
 
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#edit-btn {
+    background-color: #115b11;
+    border-color: #115b11;
+    transition: 0.5s;
+}
+
+#edit-btn:hover {
+    background-color: transparent;
+    border-color: #000;
+}
+
+#delete-btn {
+    background-color: #ac1111;
+    border-color: #ac1111;
+    transition: 0.5s;
+}
+
+#delete-btn:hover {
+    background-color: transparent;
+    border-color: #000;
+}
+
 .card-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
     font-family: "Lexend", sans-serif;
     font-size: 1rem;
     font-weight: 400;
