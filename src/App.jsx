@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import headerLogo from "/src/assets/oxente-icon-white.png"
 import Main from './components/Main';
 import Edit from "./pages/Edit";
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
     return (

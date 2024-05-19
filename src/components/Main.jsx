@@ -19,15 +19,24 @@ const Main = () => {
         try {
             setIsLoading(true);
             const response = await axios.post("https://e-commerce-test-nfi8.onrender.com/api/products", { name: name, quantity: quantity, price: price, image: image });
-            toast.success(`${response.data.name} salvo com sucesso`);
+            toast.success(`${response.data.name} criado com sucesso`);
             setIsLoading(false);
-            window.location.reload();
+            window.location.reload(5000);
         } catch (error) {
             toast.error(error.message);
             setIsLoading(false);
         }
     }
-    
+
+    const deleteProduct = async (id) => {
+        try {
+            await axios.delete(`https://e-commerce-test-nfi8.onrender.com/api/products/${id}`);
+            window.location.reload(5000);
+            toast.success("Produto deletado com sucesso");
+        } catch (error) {
+            toast.error(error.message);
+        }
+    }
 
     useEffect(() => {
         fetch("https://e-commerce-test-nfi8.onrender.com/api/products")
@@ -90,11 +99,9 @@ const Main = () => {
                                     {/* <p>Quantidade: {data.quantity}</p> */}
                                 </span>
                                 <div className="buttons">
-                                    {/* <button className="card-btn">
-                                        Comprar
-                                    </button> */}
+                                    <button className="card-btn">Comprar</button>
                                     <Link to={`/editar/${data._id}`} className="card-btn" id="edit-btn">Editar</Link>
-                                    <Link to={`/deletar/${data._id}`} className="card-btn" id="delete-btn">Deletar</Link>
+                                    <button onClick={() => deleteProduct(data._id)} className="card-btn" id="delete-btn">Deletar</button>
                                 </div>
                             </div>
                         </div>
