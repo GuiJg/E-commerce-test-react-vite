@@ -21,7 +21,9 @@ const Main = () => {
             const response = await axios.post("https://e-commerce-test-nfi8.onrender.com/api/products", { name: name, quantity: quantity, price: price, image: image });
             toast.success(`${response.data.name} criado com sucesso`);
             setIsLoading(false);
-            window.location.reload(5000);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         } catch (error) {
             toast.error(error.message);
             setIsLoading(false);
@@ -31,7 +33,9 @@ const Main = () => {
     const deleteProduct = async (id) => {
         try {
             await axios.delete(`https://e-commerce-test-nfi8.onrender.com/api/products/${id}`);
-            window.location.reload(5000);
+            setTimeout(function () {
+                window.location.reload();
+            }, 900);
             toast.success("Produto deletado com sucesso");
         } catch (error) {
             toast.error(error.message);
