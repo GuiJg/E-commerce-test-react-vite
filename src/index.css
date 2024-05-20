@@ -201,6 +201,7 @@ main {
     align-items: center;
     width: 100%;
     height: auto;
+    box-shadow: 1px 1px 10px 1px #0000006e;
 }
 
 .banner-video video {

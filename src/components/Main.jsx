@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import Sweet from "sweetalert2"
 import Modal from "./ModalSaveProduct";
 import axios from "axios";
+import { VITE_BACKEND_URL } from "../App";
 
 const Main = () => {
     const [dado, setDado] = useState([]);
@@ -14,16 +16,26 @@ const Main = () => {
     const [image, setImage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
+    const getProduct = async () => {
+        setIsLoading(true);
+        try {
+            const response = await axios.get(`${VITE_BACKEND_URL}/api/products`);
+            setDado(response.data);
+            setIsLoading(false);            
+        } catch (error) {
+            toast.error(error.message);
+            setIsLoading(false);
+        }
+    }
+
     const saveProduct = async (e) => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await axios.post("https://e-commerce-test-nfi8.onrender.com/api/products", { name: name, quantity: quantity, price: price, image: image });
+            const response = await axios.post(`${VITE_BACKEND_URL}/api/products`, { name: name, quantity: quantity, price: price, image: image });
             toast.success(`${response.data.name} criado com sucesso`);
             setIsLoading(false);
-            setTimeout(function () {
-                window.location.reload();
-            }, 1000);
+            getProduct();
         } catch (error) {
             toast.error(error.message);
             setIsLoading(false);
@@ -31,19 +43,28 @@ const Main = () => {
     }
 
     const deleteProduct = async (id) => {
-        try {
-            await axios.delete(`https://e-commerce-test-nfi8.onrender.com/api/products/${id}`);
-            setTimeout(function () {
-                window.location.reload();
-            }, 900);
-            toast.success("Produto deletado com sucesso");
-        } catch (error) {
-            toast.error(error.message);
+        const result = await Sweet.fire({
+            title: "Tem certeza que deseja excluir este item?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sim, excluir!",
+            cancelButtonText: "Cancelar",
+        })
+        if (result.isConfirmed) {
+            try {
+                await axios.delete(`${VITE_BACKEND_URL}/api/products/${id}`);
+                getProduct();
+                toast.success("Produto deletado com sucesso");
+            } catch (error) {
+                toast.error(error.message);
+            }
         }
     }
 
     useEffect(() => {
-        fetch("https://e-commerce-test-nfi8.onrender.com/api/products")
+        fetch(`${VITE_BACKEND_URL}/api/products`)
             .then(res => res.json())
             .then(data => setDado(data))
     }, [])
