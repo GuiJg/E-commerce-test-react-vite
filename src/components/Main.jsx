@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import Sweet from "sweetalert2"
-import Modal from "./ModalSaveProduct";
 import axios from "axios";
-import { VITE_BACKEND_URL } from "../App";
+import Modal from "./ModalSaveProduct";
 
 const Main = () => {
     const [dado, setDado] = useState([]);
@@ -19,7 +18,7 @@ const Main = () => {
     const getProduct = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`${VITE_BACKEND_URL}/api/products`);
+            const response = await axios.get(`https://e-commerce-test-nfi8.onrender.com/api/products`);
             setDado(response.data);
             setIsLoading(false);            
         } catch (error) {
@@ -32,7 +31,7 @@ const Main = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await axios.post(`${VITE_BACKEND_URL}/api/products`, { name: name, quantity: quantity, price: price, image: image });
+            const response = await axios.post(`https://e-commerce-test-nfi8.onrender.com/api/products`, { name: name, quantity: quantity, price: price, image: image });
             toast.success(`${response.data.name} criado com sucesso`);
             setIsLoading(false);
             getProduct();
@@ -54,7 +53,7 @@ const Main = () => {
         })
         if (result.isConfirmed) {
             try {
-                await axios.delete(`${VITE_BACKEND_URL}/api/products/${id}`);
+                await axios.delete(`https://e-commerce-test-nfi8.onrender.com/api/products/${id}`);
                 getProduct();
                 toast.success("Produto deletado com sucesso");
             } catch (error) {
@@ -64,7 +63,7 @@ const Main = () => {
     }
 
     useEffect(() => {
-        fetch(`${VITE_BACKEND_URL}/api/products`)
+        fetch(`https://e-commerce-test-nfi8.onrender.com/api/products`)
             .then(res => res.json())
             .then(data => setDado(data))
     }, [])
