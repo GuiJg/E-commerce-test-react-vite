@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import Sweet from "sweetalert2"
+import Sweet from "sweetalert2";
 import axios from "axios";
 import Modal from "./ModalSaveProduct";
 
 const Main = () => {
     const [dado, setDado] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
-
     const [name, setName] = useState("");
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
@@ -20,18 +19,18 @@ const Main = () => {
         try {
             const response = await axios.get(`https://e-commerce-test-nfi8.onrender.com/api/products`);
             setDado(response.data);
-            setIsLoading(false);            
+            setIsLoading(false);
         } catch (error) {
             toast.error(error.message);
             setIsLoading(false);
         }
-    }
+    };
 
     const saveProduct = async (e) => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await axios.post(`https://e-commerce-test-nfi8.onrender.com/api/products`, { name: name, quantity: quantity, price: price, image: image });
+            const response = await axios.post(`https://e-commerce-test-nfi8.onrender.com/api/products`, { name, quantity, price, image });
             toast.success(`${response.data.name} criado com sucesso`);
             setIsLoading(false);
             getProduct();
@@ -39,7 +38,7 @@ const Main = () => {
             toast.error(error.message);
             setIsLoading(false);
         }
-    }
+    };
 
     const deleteProduct = async (id) => {
         const result = await Sweet.fire({
@@ -50,7 +49,7 @@ const Main = () => {
             cancelButtonColor: "#3085d6",
             confirmButtonText: "Sim, excluir!",
             cancelButtonText: "Cancelar",
-        })
+        });
         if (result.isConfirmed) {
             try {
                 await axios.delete(`https://e-commerce-test-nfi8.onrender.com/api/products/${id}`);
@@ -60,13 +59,21 @@ const Main = () => {
                 toast.error(error.message);
             }
         }
-    }
+    };
+
+    const createPaymentLink = async (id) => {
+        try {
+            const response = await axios.post(`http://localhost:3000/api/payment/criar-preferencia/${id}`);
+            const { init_point } = response.data;
+            window.location.href = init_point; // Redireciona para o link de pagamento
+        } catch (error) {
+            toast.error("Erro ao criar o link de pagamento: " + error.message);
+        }
+    };
 
     useEffect(() => {
-        fetch(`https://e-commerce-test-nfi8.onrender.com/api/products`)
-            .then(res => res.json())
-            .then(data => setDado(data))
-    }, [])
+        getProduct();
+    }, []);
 
     return (
         <main>
@@ -123,18 +130,17 @@ const Main = () => {
                                     {/* <p>Quantidade: {data.quantity}</p> */}
                                 </span>
                                 <div className="buttons">
-                                    <button className="card-btn">Comprar</button>
+                                    <button onClick={() => createPaymentLink(data._id)} className="card-btn">Comprar</button>
                                     <Link to={`/editar/${data._id}`} className="card-btn" id="edit-btn">Editar</Link>
                                     <button onClick={() => deleteProduct(data._id)} className="card-btn" id="delete-btn">Deletar</button>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 ))}
             </div>
         </main>
-    )
-}
+    );
+};
 
-export default Main
+export default Main;

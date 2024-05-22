@@ -5,8 +5,6 @@ import Main from './components/Main';
 import Edit from "./pages/Edit";
 import 'react-toastify/dist/ReactToastify.css'
 
-export const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-
 function App() {
     return (
         <>
