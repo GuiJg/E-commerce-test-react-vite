@@ -63,7 +63,7 @@ const Main = () => {
 
     const createPaymentLink = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:3000/api/payment/criar-preferencia/${id}`);
+            const response = await axios.post(`https://e-commerce-test-nfi8.onrender.com/api/payment/criar-preferencia/${id}`);
             const { init_point } = response.data;
             window.location.href = init_point; // Redireciona para o link de pagamento
         } catch (error) {
