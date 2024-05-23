@@ -67,7 +67,7 @@ const Main = () => {
             const { init_point } = response.data;
             window.location.href = init_point; // Redireciona para o link de pagamento
         } catch (error) {
-            toast.error("Erro ao criar o link de pagamento: " + error.message);
+            toast.error("Erro ao criar o l  ink de pagamento: " + error.message);
         }
     };
 
