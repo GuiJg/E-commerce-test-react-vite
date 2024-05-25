@@ -4,6 +4,8 @@ import headerLogo from "/src/assets/oxente-icon-white.png"
 import Main from './components/Main';
 import Edit from "./pages/Edit";
 import 'react-toastify/dist/ReactToastify.css'
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 function App() {
     return (
@@ -34,7 +36,9 @@ function App() {
             </header>
             <Routes>
                 <Route index element={<Main />}></Route>
-                <Route path="/editar/:id" element={<Edit/>} ></Route>
+                <Route path="/editar/" element={<Edit />}></Route>
+                <Route path="/registro/" element={<Register />}></Route>
+                <Route path="/login/" element={<Login />}></Route>
             </Routes>
             <footer>
                 <p>
@@ -44,7 +48,7 @@ function App() {
                     </strong>
                 </p>
             </footer>
-            <ToastContainer/>
+            <ToastContainer />
         </>
     )
 }
