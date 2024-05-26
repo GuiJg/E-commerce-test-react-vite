@@ -108,7 +108,7 @@ const Main = () => {
                 <div className="division"></div>
             </div>
             <button className="button-input" onClick={() => setIsOpen(true)}>Inserir Produto</button>
-            <form className="create-page" onSubmit={saveProduct}>
+            <form onSubmit={saveProduct}>
                 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
                     <br />
                     <div>

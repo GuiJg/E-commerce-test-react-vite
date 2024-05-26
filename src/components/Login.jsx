@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Login = ({ setAuth }) => {
     const [email, setEmail] = useState('');
@@ -20,12 +21,17 @@ const Login = ({ setAuth }) => {
     };
 
     return (
-        <form onSubmit={loginUser}>
-            <h2>Login</h2>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email" required />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Digite sua senha" required />
-            <button type="submit">Login</button>
-        </form>
+        <div className="form-auth">
+            <form onSubmit={loginUser}>
+                <h2>Login</h2>
+                <label>E-mail </label>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email" required />
+                <label>Senha </label>
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Digite sua senha" required />
+                <Link to={'/registro'} className="link-register">Não tem conta? Crie uma aqui</Link>
+                <button type="submit">Login</button>
+            </form>
+        </div>
     );
 };
 

@@ -19,13 +19,18 @@ const Register = () => {
     };
 
     return (
-        <form onSubmit={registerUser}>
-            <h2>Registrar</h2>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome" required />
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Senha" required />
-            <button type="submit">Registrar</button>
-        </form>
+        <div className="form-auth">
+            <form onSubmit={registerUser}>
+                <h2>Criar conta</h2>
+                <label htmlFor='name'>Nome</label>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome" required />
+                <label htmlFor="email">E-mail</label>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
+                <label htmlFor="password">Senha</label>
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Senha" required />
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
     );
 };
 

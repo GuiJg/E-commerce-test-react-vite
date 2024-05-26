@@ -56,6 +56,46 @@ header {
     text-shadow: 0.5px 0.5px 0.5px #ffffff;
 }
 
+.hamburger {
+    cursor: pointer;
+    display: none;
+}
+
+.hamburger input {
+    display: none;
+}
+
+.hamburger svg {
+    /* The size of the SVG defines the overall size */
+    height: 3em;
+    /* Define the transition for transforming the SVG */
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    /* Define the transition for transforming the Stroke */
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+        stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line-top-bottom {
+    stroke-dasharray: 12 63;
+}
+
+.hamburger input:checked+svg {
+    transform: rotate(-45deg);
+}
+
+.hamburger input:checked+svg .line-top-bottom {
+    stroke-dasharray: 20 300;
+    stroke-dashoffset: -32.42;
+}
+
 
 .search-products {
     --input-bg: #FFf;
@@ -123,6 +163,22 @@ header {
     opacity: 0;
     transform: scale(0);
     visibility: hidden;
+}
+
+.header-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #fff;
+    border-radius: 1rem;
+    padding: 1%;
+}
+
+.header-login svg{
+    width: 100%;
+    height: auto;
 }
 
 form input:focus~.icon {
@@ -344,7 +400,7 @@ button {
     gap: 2em;
 }
 
-.container-loader{
+.container-loader {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -356,7 +412,7 @@ button {
     z-index: 9;
 }
 
-.loader{
+.loader {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -373,7 +429,7 @@ button {
     margin: 10% 0% 5% 0%;
 }
 
-.edit-container h2{
+.edit-container h2 {
     font-size: 2rem;
 }
 
@@ -451,6 +507,76 @@ button {
 .form button:hover {
     background-color: #fff;
     border: 1px solid #000;
+    color: #000;
+}
+
+.form-auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15% 0% 9.56% 0%;
+}
+
+.form-auth h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.form-auth form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 4px 4px 1px 1px #000;
+    padding: 7rem 5rem 7rem 5rem;
+    margin: 1%;
+}
+
+.form-auth label {
+    margin-bottom: 0.2rem;
+}
+
+.form-auth input {
+    width: 20rem;
+    margin-bottom: 0.7rem;
+    padding: 0.4rem;
+    border-radius: 0.3rem;
+    transition: 0.5s;
+}
+
+.form-auth input:hover,
+.form-auth input:focus {
+    box-shadow: 0.2rem 0.2rem 0rem 0.1rem #000;
+}
+
+.form-auth button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    background-color: #000;
+    border: 1px solid #000;
+    color: #fff;
+    width: 5rem;
+    margin-top: 0.5rem;
+    padding: 0.2rem 1rem 0.2rem 1rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.form-auth button:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+.link-register{
+    text-decoration: underline;
+    font-size: 1rem;
+    font-weight: 500;
     color: #000;
 }
 
@@ -607,4 +733,40 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+@media screen and (max-width: 800px) {
+
+    main{
+        gap: 1rem;
+        margin-top: 3rem;
+    }
+
+    .header-logo{
+        width: 20%;
+    }
+
+    .button-input{
+        padding: 2%;
+    }
+
+    .header-menu{
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form-auth {
+        width: 80%;
+    }
+
+    .hamburger{
+        display: flex;
+        overflow: hidden;
+    }
+
+    .item{
+        width: 100%;
+    }
+
 }
