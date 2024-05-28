@@ -22,7 +22,7 @@ const Main = () => {
             const response = await axios.get(`https://e-commerce-test-nfi8.onrender.com/api/products`);
             setDado(response.data);
             setIsLoading(false);
-        } catch (error) {
+        } catch (error) { 
             toast.error(error.message);
             setIsLoading(false);
         }
