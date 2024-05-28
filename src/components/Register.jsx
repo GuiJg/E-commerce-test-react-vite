@@ -10,9 +10,9 @@ const Register = () => {
     const registerUser = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://e-commerce-test-nfi8.onrender.com/api/auth/register', { name, email, password });
+            const response = await axios.post('http://localhost:3000/api/auth/register', { name, email, password });
             toast.success('Usário registrado com sucesso');
-            toast.success(`Bem-vindo, ${response.name}`);
+            toast.success(`Bem-vindo, ${response.data.name}`);
         } catch (error) {
             toast.error('Erro ao registrar: ' + error.response.data.msg);
         }

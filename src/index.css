@@ -169,16 +169,27 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid #fff;
-    border-radius: 1rem;
-    padding: 1%;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #fff;
+}
+
+.header-login:hover{
+    text-decoration: underline;
 }
 
 .header-login svg{
-    width: 100%;
+    border: 1px solid #fff;
+    border-radius: 10rem;
+    padding: 0.3rem;
+    width: 30%;
     height: auto;
+}
+
+.header-login span{
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fff;
 }
 
 form input:focus~.icon {
@@ -578,6 +589,13 @@ button {
     font-size: 1rem;
     font-weight: 500;
     color: #000;
+}
+
+.search-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .button-input {
