@@ -71,6 +71,10 @@ const Main = () => {
     };
 
     const handleClickAll = async (id) => {
+        const token = localStorage.getItem("token")
+
+        if (!token) return toast.error("Você não está logado!")
+
         handleLoading(); 
         await createPaymentLink(id); 
     };
@@ -78,12 +82,13 @@ const Main = () => {
     const createPaymentLink = async (id) => {
         try {
             const response = await axios.post(`http://localhost:3000/api/payment/criar-preferencia/${id}`);
-            const { init_point } = response.data;
-            window.location.href = init_point; // Redireciona para o link de pagamento
+            const { sandbox_init_point } = response.data;
+            window.open(sandbox_init_point); // Abre nova guia para o link de pagamento
+            // window.location.href = sandbox_init_point; // Redireciona para o link de pagamento
         } catch (error) {
             toast.error("Erro ao criar o link de pagamento: " + error.message);
         }
-    };
+    }
 
     useEffect(() => {
         getProduct();
