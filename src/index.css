@@ -595,7 +595,34 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.8rem;
+}
+
+.logado{
+    display: flex;
+    flex-direction: column;
+}
+
+.logado p{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.logado button{
+    font-size: 1rem;
+    background-color: #fff;
+    padding: 1%;
+    border: 1px solid #fff;
+    color: #000;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.logado button:hover{
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
 }
 
 .button-input {

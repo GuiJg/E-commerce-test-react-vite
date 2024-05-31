@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'; // Importe PropTypes
+import { Link, useNavigate } from 'react-router-dom'; // Importe Link para navegar para a página de registro
 
 const Login = ({ setAuth }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();    
 
     const loginUser = async (e) => {
         e.preventDefault();
@@ -13,12 +15,18 @@ const Login = ({ setAuth }) => {
             const response = await axios.post('http://localhost:3000/api/auth/login', { email, password });
             localStorage.setItem('token', response.data.token);
             setAuth(true);
+            navigate('/');
             toast.success('Usuário logado com sucesso');
-            toast.success(`Bem-vindo, ${response.data.name}`);
         } catch (error) {
-            toast.error('Erro ao logar: ' + error.response.data.msg);
+            if (error.response) {
+                // Se houver uma resposta do servidor, exiba a mensagem de erro fornecida pelo servidor
+                toast.error('Erro ao logar: ' + error.response.data.msg);
+            } else {
+                // Caso contrário, exiba uma mensagem genérica de erro
+                toast.error('Erro ao logar. Por favor, tente novamente.');
+            }
         }
-    };
+    };    
 
     return (
         <div className="form-auth">
@@ -33,6 +41,11 @@ const Login = ({ setAuth }) => {
             </form>
         </div>
     );
+};
+
+// Adicione a validação de tipo para setAuth
+Login.propTypes = {
+    setAuth: PropTypes.func.isRequired,
 };
 
 export default Login;
