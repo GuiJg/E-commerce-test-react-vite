@@ -13,13 +13,12 @@ function App() {
     const [auth, setAuth] = useState(false);
 
     useEffect(() => {
-        // Set up Axios default headers
         const token = localStorage.getItem('token');
         if (token) {
             axios.defaults.headers.common['x-auth-token'] = token;
-            setAuth(true); // Set auth state to true if token is present
+            setAuth(true); 
         } else {
-            setAuth(false); // Set auth state to false if token is not present
+            setAuth(false); 
         }
     }, []);
 

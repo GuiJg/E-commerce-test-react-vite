@@ -19,7 +19,7 @@ const Main = () => {
     const getProduct = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`http://localhost:3000/api/products`);
+            const response = await axios.get(`https://e-commerce-test-nfi8.onrender.com/api/products`);
             setDado(response.data);
             setIsLoading(false);
         } catch (error) { 
@@ -32,7 +32,7 @@ const Main = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await axios.post(`http://localhost:3000/api/products`, { name, quantity, price, image });
+            const response = await axios.post(`https://e-commerce-test-nfi8.onrender.com/api/products`, { name, quantity, price, image });
             toast.success(`${response.data.name} criado com sucesso`);
             setIsLoading(false);
             getProduct();
@@ -54,7 +54,7 @@ const Main = () => {
         });
         if (result.isConfirmed) {
             try {
-                await axios.delete(`http://localhost:3000/api/products/${id}`);
+                await axios.delete(`https://e-commerce-test-nfi8.onrender.com/api/products/${id}`);
                 getProduct();
                 toast.success("Produto deletado com sucesso");
             } catch (error) {
@@ -81,7 +81,7 @@ const Main = () => {
 
     const createPaymentLink = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:3000/api/payment/criar-preferencia/${id}`);
+            const response = await axios.post(`https://e-commerce-test-nfi8.onrender.com/api/payment/criar-preferencia/${id}`);
             const { sandbox_init_point } = response.data;
             window.location.href = sandbox_init_point; 
         } catch (error) {

@@ -12,7 +12,7 @@ const Login = ({ setAuth }) => {
     const loginUser = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/api/auth/login', { email, password });
+            const response = await axios.post('https://e-commerce-test-nfi8.onrender.com/api/auth/login', { email, password });
             localStorage.setItem('token', response.data.token);
             setAuth(true);
             navigate('/');
