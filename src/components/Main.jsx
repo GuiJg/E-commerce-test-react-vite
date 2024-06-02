@@ -5,6 +5,7 @@ import { PuffLoader } from "react-spinners";
 import Sweet from "sweetalert2";
 import axios from "axios";
 import Modal from "./ModalSaveProduct";
+import { VITE_DATABASE_URL } from "../App";
 
 const Main = () => {
     const [dado, setDado] = useState([]);
@@ -19,7 +20,7 @@ const Main = () => {
     const getProduct = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`https://e-commerce-test-nfi8.onrender.com/api/products`);
+            const response = await axios.get(`${VITE_DATABASE_URL}/api/products`);
             setDado(response.data);
             setIsLoading(false);
         } catch (error) { 
@@ -32,7 +33,7 @@ const Main = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await axios.post(`https://e-commerce-test-nfi8.onrender.com/api/products`, { name, quantity, price, image });
+            const response = await axios.post(`${VITE_DATABASE_URL}/api/products`, { name, quantity, price, image });
             toast.success(`${response.data.name} criado com sucesso`);
             setIsLoading(false);
             getProduct();
@@ -54,7 +55,7 @@ const Main = () => {
         });
         if (result.isConfirmed) {
             try {
-                await axios.delete(`https://e-commerce-test-nfi8.onrender.com/api/products/${id}`);
+                await axios.delete(`${VITE_DATABASE_URL}/api/products/${id}`);
                 getProduct();
                 toast.success("Produto deletado com sucesso");
             } catch (error) {
@@ -81,7 +82,7 @@ const Main = () => {
 
     const createPaymentLink = async (id) => {
         try {
-            const response = await axios.post(`https://e-commerce-test-nfi8.onrender.com/api/payment/criar-preferencia/${id}`);
+            const response = await axios.post(`${VITE_DATABASE_URL}/api/payment/criar-preferencia/${id}`);
             const { sandbox_init_point } = response.data;
             window.location.href = sandbox_init_point; 
         } catch (error) {

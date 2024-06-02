@@ -9,6 +9,8 @@ import Edit from "./pages/Edit";
 import Register from "./components/Register";
 import Login from "./components/Login";
 
+export const VITE_DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
+
 function App() {
     const [auth, setAuth] = useState(false);
 
@@ -90,7 +92,17 @@ function App() {
                     </strong>
                 </p>
             </footer>
-            <ToastContainer />
+            <ToastContainer 
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={true}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </>
     );
 }

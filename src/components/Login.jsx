@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
-import PropTypes from 'prop-types'; // Importe PropTypes
-import { Link, useNavigate } from 'react-router-dom'; // Importe Link para navegar para a página de registro
+import { Link, useNavigate } from 'react-router-dom'; 
+import axios from 'axios';
+import PropTypes from 'prop-types';  
 
 const Login = ({ setAuth }) => {
     const [email, setEmail] = useState('');
