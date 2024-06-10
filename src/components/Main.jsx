@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
-import { PuffLoader } from "react-spinners";
-import Sweet from "sweetalert2";
-import axios from "axios";
-import Modal from "./ModalSaveProduct";
-import { VITE_DATABASE_URL } from "../App";
+// Main.js
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+import { PuffLoader } from 'react-spinners';
+
+import Sweet from 'sweetalert2';
+import axios from 'axios';
+import Modal from './ModalSaveProduct';
 
 const Main = () => {
     const [dado, setDado] = useState([]);
@@ -17,14 +18,16 @@ const Main = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    const VITE_DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
+
     const getProduct = async () => {
         setIsLoading(true);
         try {
             const response = await axios.get(`${VITE_DATABASE_URL}/api/products`);
             setDado(response.data);
-            setIsLoading(false);
-        } catch (error) { 
+        } catch (error) {
             toast.error(error.message);
+        } finally {
             setIsLoading(false);
         }
     };
@@ -35,10 +38,10 @@ const Main = () => {
             setIsLoading(true);
             const response = await axios.post(`${VITE_DATABASE_URL}/api/products`, { name, quantity, price, image });
             toast.success(`${response.data.name} criado com sucesso`);
-            setIsLoading(false);
             getProduct();
         } catch (error) {
             toast.error(error.message);
+        } finally {
             setIsLoading(false);
         }
     };
@@ -68,30 +71,33 @@ const Main = () => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 2500); // 1500ms = 1.5s
+        }, 2500);
     };
 
     const handleClickAll = async (id) => {
-        const token = localStorage.getItem("token")
+        const token = localStorage.getItem("token");
 
-        if (!token) return toast.error("Faça login para comprar!")
+        if (!token) {
+            return toast.error("Faça login para comprar!");
+        }
 
-        handleLoading(); 
-        await createPaymentLink(id); 
+        handleLoading();
+        await createPaymentLink(id);
     };
 
     const createPaymentLink = async (id) => {
         try {
             const response = await axios.post(`${VITE_DATABASE_URL}/api/payment/criar-preferencia/${id}`);
             const { sandbox_init_point } = response.data;
-            window.location.href = sandbox_init_point; 
+            window.location.href = sandbox_init_point;
         } catch (error) {
             toast.error("Erro ao criar o link de pagamento: " + error.message);
         }
-    }
+    };
 
     useEffect(() => {
         getProduct();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -164,6 +170,7 @@ const Main = () => {
                                 </span>
                                 <div className="buttons">
                                     <button onClick={() => handleClickAll(data._id)} className="card-btn">Comprar</button>
+                                    <button      className="card-btn">Adicionar ao carrinho</button>
                                     <Link to={`/editar/${data._id}`} className="card-btn" id="edit-btn">Editar</Link>
                                     <button onClick={() => deleteProduct(data._id)} className="card-btn" id="delete-btn">Deletar</button>
                                 </div>

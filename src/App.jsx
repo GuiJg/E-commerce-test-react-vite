@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import headerLogo from "/src/assets/oxente-icon-white.png";
 import Main from './components/Main';
 import Edit from "./pages/Edit";
-import Register from "./components/Register";
-import Login from "./components/Login";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import ShopCart from "./pages/ShopCart";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const VITE_DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
 
 function App() {
@@ -18,9 +20,9 @@ function App() {
         const token = localStorage.getItem('token');
         if (token) {
             axios.defaults.headers.common['x-auth-token'] = token;
-            setAuth(true); 
+            setAuth(true);
         } else {
-            setAuth(false); 
+            setAuth(false);
         }
     }, []);
 
@@ -45,6 +47,7 @@ function App() {
                                 localStorage.removeItem('email');
                                 setAuth(false);
                                 delete axios.defaults.headers.common['x-auth-token'];
+                                toast.success('Deslogado com sucesso');
                             }}>Deslogar</button>
                         </div>
                     ) : (
@@ -69,6 +72,9 @@ function App() {
                             </button>
                         </label>
                     </form>
+                    <Link to={"/Shop"}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.137a60 60 0 0 0-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m12.75 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0"></path></svg>
+                    </Link>
                 </div>
                 <label className="hamburger">
                     <input type="checkbox" />
@@ -81,6 +87,7 @@ function App() {
             <Routes>
                 <Route index element={<Main />}></Route>
                 <Route path="/editar/:id" element={<Edit />}></Route>
+                <Route path="/carrinho/" element={<ShopCart />}></Route>
                 <Route path="/registro/" element={<Register />}></Route>
                 <Route path="/login/" element={<Login setAuth={setAuth} />} />
             </Routes>
@@ -92,7 +99,7 @@ function App() {
                     </strong>
                 </p>
             </footer>
-            <ToastContainer 
+            <ToastContainer
                 position="top-right"
                 autoClose={2000}
                 hideProgressBar={false}

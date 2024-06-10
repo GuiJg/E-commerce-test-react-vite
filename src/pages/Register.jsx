@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const VITE_DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
+
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -10,7 +12,7 @@ const Register = () => {
     const registerUser = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://e-commerce-test-nfi8.onrender.com/api/auth/register', { name, email, password });
+            const response = await axios.post(`${VITE_DATABASE_URL}/api/auth/register`, { name, email, password });
             toast.success('Usário registrado com sucesso');
             toast.success(`Bem-vindo, ${response.data.name}`);
         } catch (error) {

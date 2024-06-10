@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';  
 
+const VITE_DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
+
 const Login = ({ setAuth }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,7 +14,7 @@ const Login = ({ setAuth }) => {
     const loginUser = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://e-commerce-test-nfi8.onrender.com/api/auth/login', { email, password });
+            const response = await axios.post(`${VITE_DATABASE_URL}/api/auth/login`, { email, password });
             localStorage.setItem('token', response.data.token);
             setAuth(true);
             navigate('/');
