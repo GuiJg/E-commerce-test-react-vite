@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { useShopCartContext } from "../hooks/useShopCartContext";
+
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import headerLogo from "/src/assets/oxente-icon-white.png";
@@ -16,6 +18,8 @@ export const VITE_DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
 function App() {
     const [auth, setAuth] = useState(false);
 
+    const {shopCartProducts} = useShopCartContext();
+
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -25,6 +29,10 @@ function App() {
             setAuth(false);
         }
     }, []);
+
+    useEffect(() => {
+        localStorage.setItem('shopCartProducts', JSON.stringify(shopCartProducts));
+    }, [shopCartProducts]);
 
     return (
         <>
@@ -45,6 +53,7 @@ function App() {
                             <button onClick={() => {
                                 localStorage.removeItem('token');
                                 localStorage.removeItem('email');
+                                localStorage.removeItem('shopCartProducts');
                                 setAuth(false);
                                 delete axios.defaults.headers.common['x-auth-token'];
                                 toast.success('Deslogado com sucesso');
@@ -72,7 +81,8 @@ function App() {
                             </button>
                         </label>
                     </form>
-                    <Link to={"/Shop"}>
+                    <Link to={"/carrinho"} className="cart-link">
+                        <div className="cart-counter">{shopCartProducts.length}</div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.137a60 60 0 0 0-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m12.75 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0"></path></svg>
                     </Link>
                 </div>

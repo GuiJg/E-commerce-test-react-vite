@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { VITE_DATABASE_URL } from "../App";
 
 function Edit() {
     let { id } = useParams();
@@ -17,7 +18,7 @@ function Edit() {
     const getProduct = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`https://e-commerce-test-nfi8.onrender.com/api/products/${id}`);
+            const response = await axios.get(`${VITE_DATABASE_URL}/api/products/${id}`);
             setProduct({
                 name: response.data.name,
                 quantity: response.data.quantity,
@@ -33,9 +34,13 @@ function Edit() {
 
     const updateProduct = async (e) => {
         e.preventDefault();
+        const token = localStorage.getItem("token");
+        if (!token) {
+            return toast.error("Faça login para editar um item!");
+        }
         setIsLoading(true);
         try {
-            await axios.put(`https://e-commerce-test-nfi8.onrender.com/api/products/${id}`, product);
+            await axios.put(`${VITE_DATABASE_URL}/api/products/${id}`, product);
             toast.success(`Produto editado com sucesso`);
             navigate("/");
         } catch (error) {

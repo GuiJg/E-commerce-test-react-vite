@@ -7,6 +7,7 @@ import { PuffLoader } from 'react-spinners';
 import Sweet from 'sweetalert2';
 import axios from 'axios';
 import Modal from './ModalSaveProduct';
+import { useShopCartContext } from '../../hooks/useShopCartContext';
 
 const Main = () => {
     const [dado, setDado] = useState([]);
@@ -17,6 +18,10 @@ const Main = () => {
     const [image, setImage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    const token = localStorage.getItem("token");
+
+    const {shopCartProducts, setShopCartProducts} = useShopCartContext();
 
     const VITE_DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
 
@@ -34,6 +39,9 @@ const Main = () => {
 
     const saveProduct = async (e) => {
         e.preventDefault();
+        if (!token) {
+            return toast.error("Faça login para adicionar um item!");
+        }
         try {
             setIsLoading(true);
             const response = await axios.post(`${VITE_DATABASE_URL}/api/products`, { name, quantity, price, image });
@@ -47,6 +55,9 @@ const Main = () => {
     };
 
     const deleteProduct = async (id) => {
+        if (!token) {
+            return toast.error("Faça login para deletar um item!");
+        }
         const result = await Sweet.fire({
             title: "Tem certeza que deseja excluir este item?",
             icon: "warning",
@@ -75,8 +86,6 @@ const Main = () => {
     };
 
     const handleClickAll = async (id) => {
-        const token = localStorage.getItem("token");
-
         if (!token) {
             return toast.error("Faça login para comprar!");
         }
@@ -97,8 +106,18 @@ const Main = () => {
 
     useEffect(() => {
         getProduct();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const addToCart = ({ title, unit_price, image }) => {
+        if (!token) {
+            return toast.error("Faça login para comprar!");
+        }
+        setShopCartProducts([...shopCartProducts, { title, unit_price, image }]);
+        return toast.success("Adicionado ao carrinho!");
+    };
+
+    console.log(shopCartProducts);
 
     return (
         <main>
@@ -170,9 +189,10 @@ const Main = () => {
                                 </span>
                                 <div className="buttons">
                                     <button onClick={() => handleClickAll(data._id)} className="card-btn">Comprar</button>
-                                    <button      className="card-btn">Adicionar ao carrinho</button>
+                                    <button onClick={() => addToCart({ title: data.name, unit_price: data.price, image: data.image })}
+                                        className='card-btn'> Adicionar ao carrinho </button>
                                     <Link to={`/editar/${data._id}`} className="card-btn" id="edit-btn">Editar</Link>
-                                    <button onClick={() => deleteProduct(data._id)} className="card-btn" id="delete-btn">Deletar</button>
+                                    <button onClick={() => deleteProduct(data.z_id)} className="card-btn" id="delete-btn">Deletar</button>
                                 </div>
                             </div>
                         </div>

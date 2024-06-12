@@ -664,6 +664,85 @@ button {
     gap: 10px;
 }
 
+.cart-main, .empty-cart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 15rem 5rem 22rem 5rem
+}
+
+.button-homepage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1%;
+    width: 15rem;
+    background-color: #000;
+    border: 1px solid #000;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.button-homepage:hover{
+    background-color: transparent;
+    color: #000;
+}
+
+.empty-cart svg{
+    width: 2rem;
+    height: auto;
+}
+
+.empty-cart svg path{
+    fill: #fff;
+    transition: 0.5s;
+}
+
+.button-homepage:hover .empty-cart svg path{
+    fill: #000;
+}
+
+.item-cart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #000;
+    padding: 1%;
+    gap: 1rem;
+}
+
+.info-products{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.info-products img{
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid #00000089
+}
+
+.button-remove{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.button-remove svg{
+    width: 1.4rem;
+    height: auto;
+}
+
 .item-content {
     display: flex;
     flex-direction: column;
@@ -694,6 +773,34 @@ button {
     font-weight: 600;
     font-size: 0.9rem;
     gap: 5rem;
+}
+
+.cart-link{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 1%;
+}
+
+.cart-link svg{
+    width: 2rem;
+    height: auto;
+}
+
+.cart-counter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 10rem;
+    width: 1.2rem;
+    color: #000;
+    font-family: 'Sofia Sans Condensed', sans-serif;
+    top: 0;
+    right: 0;
 }
 
 .buttons {
