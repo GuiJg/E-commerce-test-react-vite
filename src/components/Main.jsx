@@ -1,6 +1,6 @@
 // Main.js
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { PuffLoader } from 'react-spinners';
 
@@ -117,8 +117,6 @@ const Main = () => {
         return toast.success("Adicionado ao carrinho!");
     };
 
-    console.log(shopCartProducts);
-
     return (
         <main>
             <div className="banner-video">
@@ -192,7 +190,7 @@ const Main = () => {
                                     <button onClick={() => addToCart({ title: data.name, unit_price: data.price, image: data.image })}
                                         className='card-btn'> Adicionar ao carrinho </button>
                                     <Link to={`/editar/${data._id}`} className="card-btn" id="edit-btn">Editar</Link>
-                                    <button onClick={() => deleteProduct(data.z_id)} className="card-btn" id="delete-btn">Deletar</button>
+                                    <button onClick={() => deleteProduct(data._id)} className="card-btn" id="delete-btn">Deletar</button>
                                 </div>
                             </div>
                         </div>

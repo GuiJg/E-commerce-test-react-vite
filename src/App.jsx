@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import { useShopCartContext } from "../hooks/useShopCartContext";
+import { toast, Toaster } from "react-hot-toast";
 
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -16,9 +16,10 @@ import ShopCart from "./pages/ShopCart";
 export const VITE_DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
 
 function App() {
+
     const [auth, setAuth] = useState(false);
 
-    const {shopCartProducts} = useShopCartContext();
+    const { shopCartProducts } = useShopCartContext();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -109,16 +110,23 @@ function App() {
                     </strong>
                 </p>
             </footer>
-            <ToastContainer
+            <Toaster
                 position="top-right"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={true}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
+                reverseOrder={false}
+                gutter={10}
+                containerClassName="hot-toaster"
+                containerStyle={{}}
+                toastOptions={{ 
+                    className: "",
+                    duration: 2000,
+                    style: {
+                        background: "#000",
+                        color: "#fff",
+                        width: "14rem",
+                        height: "3rem",
+                        cursor: "context-menu",
+                    },
+                }}
             />
         </>
     );
