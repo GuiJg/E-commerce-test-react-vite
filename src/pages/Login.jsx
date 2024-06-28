@@ -35,9 +35,9 @@ const Login = ({ setAuth }) => {
             <form onSubmit={loginUser}>
                 <h2>Login</h2>
                 <label>E-mail </label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email" required />
+                <input type="email" id='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Digite seu email" required />
                 <label>Senha </label>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Digite sua senha" required />
+                <input type="password" id='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Digite sua senha" required />
                 <Link to={'/registro'} className="link-register">Não tem conta? Crie uma aqui</Link>
                 <button type="submit">Login</button>
             </form>

@@ -19,7 +19,7 @@ function Edit() {
         setIsLoading(true);
         try {
             const response = await axios.get(`${VITE_DATABASE_URL}/api/products/${id}`);
-            setProduct({
+            setProduct({        
                 name: response.data.name,
                 quantity: response.data.quantity,
                 price: response.data.price,
@@ -34,10 +34,6 @@ function Edit() {
 
     const updateProduct = async (e) => {
         e.preventDefault();
-        const token = localStorage.getItem("token");
-        if (!token) {
-            return toast.error("Faça login para editar um item!");
-        }
         setIsLoading(true);
         try {
             await axios.put(`${VITE_DATABASE_URL}/api/products/${id}`, product);
@@ -51,6 +47,7 @@ function Edit() {
 
     useEffect(() => {
         getProduct();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

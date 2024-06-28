@@ -7,7 +7,7 @@ import { ShopCartContextProvider } from '../contexts/ShopCartContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <ShopCartContextProvider>
+        <ShopCartContextProvider    >
             <BrowserRouter>
                 <App />
             </BrowserRouter>
