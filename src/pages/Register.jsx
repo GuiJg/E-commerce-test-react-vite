@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const VITE_DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
 
@@ -9,12 +10,14 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+    
     const registerUser = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${VITE_DATABASE_URL}/api/auth/register`, { name, email, password });
-            toast.success('Usário registrado com sucesso');
-            toast.success(`Bem-vindo, ${response.data.name}`);
+            await axios.post(`${VITE_DATABASE_URL}/api/auth/register`, { name, email, password });
+            toast.success(`Usuário registrado com sucesso`);
+            navigate('/login');
         } catch (error) {
             toast.error('Erro ao registrar: ' + error.response.data.msg);
         }

@@ -192,14 +192,16 @@ function App() {
                 containerClassName="hot-toaster"
                 containerStyle={{}}
                 toastOptions={{
-                    className: "",
                     duration: 2000,
                     style: {
-                        background: "#000",
+                        background: "#0F0B0E",
+                        border: "1px solid #ffffff0f",
                         color: "#fff",
-                        width: "14rem",
+                        width: "15rem",
                         height: "3rem",
-                        cursor: "context-menu",
+                        overflow: "hidden",
+                        padding: "2rem 1rem 2rem 1rem",
+                        cursor: "pointer",
                     },
                 }}
             />
