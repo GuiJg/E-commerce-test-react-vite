@@ -130,7 +130,7 @@ const Main = () => {
             toast.error("Erro ao criar o link de pagamento: " + error.message);
         }
     };
-
+ 
     useEffect(() => {
         getProduct();
         // eslint-disable-next-line react-hooks/exhaustive-deps
